@@ -14,7 +14,7 @@ class Settings(BaseSettings) :
     supabase_service_key : str = ""
     embedding_model : str = "sentence-transformers/all-MiniLM-L6-v2"
     llm_model :str= "openai/gpt-oss-120b"
-    kb_namesapce : str = "enterprice-it-support"
+    kb_namespace : str = "enterprice-it-support"
     top_k : int = 4
     max_retries : int= 1
     admin_api_key : str = "change_me"

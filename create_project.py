@@ -22,7 +22,7 @@ folders = [
 
 files = [
     "app/main.py",
-    "ingest_sample_kb.py"
+    "ingest_sample_kb.py",
     "run.py",
     ".env"
 ]
