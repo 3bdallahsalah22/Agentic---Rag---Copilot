@@ -187,7 +187,7 @@ The system therefore controls **what to do next** based on its current state.
 | Agent workflow | LangGraph | Stateful routing and conditional decisions |
 | LLM | Groq | Routing, grading, rewriting, answer generation |
 | Embeddings | HuggingFace `all-MiniLM-L6-v2` | Local 384-dimensional embeddings |
-| Vector DB | Pinecone | Private enterprise knowledge base |
+| Vector DB | supabase | Private enterprise knowledge base |
 | External search | Tavily | Fallback when company KB is insufficient |
 | API | FastAPI | Backend and REST endpoints |
 | Frontend | HTML/CSS/JavaScript | Employee-facing interface |
@@ -284,15 +284,13 @@ OPENAI_API_KEY=your_openai_api_key_here
 # External Search
 TAVILY_API_KEY=your_tavily_api_key_here
 
-# Vector Database (Pinecone)
-PINECONE_API_KEY=your_pinecone_api_key_here
-PINECONE_INDEX_NAME=fde-it-support-rag
-PINECONE_NAMESPACE=company-it-kb
+# Vector Database (supabase)
+supabase_service_KEY=key_here
+SUPABASE_NAMESPACE=Enterprice-it-support
 
 # LLM Models
-GROQ_MODEL=openai/gpt-oss-20b
-OPENAI_MODEL=gpt-4o-mini
-EMBEDDING_MODEL=text-embedding-3-small
+GROQ_MODEL=openai/gpt-oss-120b
+EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2
 
 # Security
 ADMIN_API_KEY=change-me-in-production
@@ -308,12 +306,10 @@ APP_ENV=development
 | `GROQ_API_KEY` | API key for Groq LLM (routing, grading, generation) | `gsk_...` | ✅ Yes |
 | `OPENAI_API_KEY` | API key for OpenAI (embeddings and fallback LLM) | `sk-...` | ✅ Yes |
 | `TAVILY_API_KEY` | API key for Tavily web search | `tvly-...` | ✅ Yes |
-| `PINECONE_API_KEY` | API key for Pinecone vector database | `pckey-...` | ✅ Yes |
-| `PINECONE_INDEX_NAME` | Pinecone index name | `fde-it-support-rag` | ⚠️ Optional (default: `fde-it-support-rag`) |
-| `PINECONE_NAMESPACE` | Pinecone namespace for document isolation | `company-it-kb` | ⚠️ Optional (default: `company-it-kb`) |
-| `GROQ_MODEL` | Groq model identifier | `openai/gpt-oss-20b` | ⚠️ Optional (default: `openai/gpt-oss-20b`) |
-| `OPENAI_MODEL` | OpenAI model identifier | `gpt-4o-mini` | ⚠️ Optional (default: `gpt-4o-mini`) |
-| `EMBEDDING_MODEL` | Embedding model for vectorization | `text-embedding-3-small` | ⚠️ Optional (default: `text-embedding-3-small`) |
+| `SUPABASE_API_KEY` | API key for Supabaer vector database | `sbkey-...` | ✅ Yes |
+| `SUPABASE_NAMESPACE` | supabase namespace for document isolation | `enterprice-it-support` | ⚠️ Optional (default: `company-it-kb`) |
+| `GROQ_MODEL` | Groq model identifier | `openai/gpt-oss-120b` | ⚠️ Optional (default: `openai/gpt-oss-20b`) |
+| `EMBEDDING_MODEL` | Embedding model for vectorization | `sentence-transformers/all-MiniLM-L6-v2` | ⚠️ Optional (default: `sentence-transformers/all-MiniLM-L6-v2`) |
 | `ADMIN_API_KEY` | Secret key for admin endpoints (document ingestion) | `your-secure-key` | ⚠️ Optional (default: `change-me`) |
 | `APP_ENV` | Application environment | `development` or `production` | ⚠️ Optional (default: `development`) |
 
@@ -341,7 +337,7 @@ Chunk Text
    ↓
 HuggingFace Embeddings
    ↓
-Pinecone Vector Database
+Supabase Vector Database
 ```
 
 ### Step 5 — Run the application
@@ -537,7 +533,7 @@ Response contains:
 
 Protected by the `X-Admin-Key` request header.
 
-Uploads a document and adds its chunks to Pinecone.
+Uploads a document and adds its chunks to Supabase
 
 ---
 

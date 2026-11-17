@@ -13,7 +13,7 @@ folders = [
     "app/services",
     "data",
     "templates" , 
-    "statics",
+    "static",
     "uploads",
     "tests"
 ]
